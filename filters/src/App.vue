@@ -5,7 +5,7 @@
         <h1>Filters and Mixins</h1>
         <p>{{ text | toUppercase | to-lowercase}}</p>
         <hr>
-        <input v-model="fruitsText">
+        <input v-model="filterText">
         <ul>
           <li v-for="(fruit, index) in filteredFruits" :key="index">{{fruit}}</li>
         </ul>
@@ -18,13 +18,13 @@
 
 <script>
 import List from  './List';
+import {fruitMixin} from './fruitMixin.js';
 export default {
   name: 'app',
+  mixins: [fruitMixin],
   data () {
     return {
-      text: "hello there!",
-      fruits:["Apple", "Banana", "Mango", "Melon"],
-      fruitsText: ''
+      text: "hello there!"
     } 
   },
   components: {
@@ -33,13 +33,6 @@ export default {
   filters: {
     toUppercase(value) {
       return value.toUpperCase();
-    }
-  },
-  computed: {
-    filteredFruits()  {
-      return this.fruits.filter((element)=> {
-        return element.match(this.fruitsText);
-      });
     }
   }
 }
