@@ -7,14 +7,17 @@
         <hr>
         <input v-model="fruitsText">
         <ul>
-          <li v-for="fruit in filteredFruits">{{fruit}}</li>
+          <li v-for="(fruit, index) in filteredFruits" :key="index">{{fruit}}</li>
         </ul>
+        <hr>
+        <list></list>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import List from  './List';
 export default {
   name: 'app',
   data () {
@@ -22,8 +25,10 @@ export default {
       text: "hello there!",
       fruits:["Apple", "Banana", "Mango", "Melon"],
       fruitsText: ''
-    }
-    
+    } 
+  },
+  components: {
+    List
   },
   filters: {
     toUppercase(value) {
